@@ -1,0 +1,23 @@
+version: "3.0"
+
+services:
+  gogs:
+    image: gogs/gogs
+    logging:
+      driver: json-file
+      options:
+        max-file: "5"
+        max-size: 10m
+    container_name: gogs
+    tty: true
+    stdin_open: true
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - gogs-data-volume:/data
+
+volumes:
+  gogs-data-volume:
+    external: true
